@@ -17,7 +17,7 @@ function AddEvent() {
       imageUrl: imgUrl
     }
 
-    fetch(`https://boiling-oasis-42648.herokuapp.com/addEvent`, {
+    fetch(`https://desolate-harbor-02076.herokuapp.com/addEvent`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

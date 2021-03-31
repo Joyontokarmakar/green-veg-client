@@ -24,7 +24,7 @@ function SignIn() {
   const onSubmit = data => {
     setErrorMsg('');
     if (isNewUser) {
-      fetch(`https://boiling-oasis-42648.herokuapp.com/signup`, {
+      fetch(`https://desolate-harbor-02076.herokuapp.com/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -40,7 +40,7 @@ function SignIn() {
           }
         })
     } else {
-      fetch(`https://boiling-oasis-42648.herokuapp.com/signin?email=${data.email}&password=${data.password}`)
+      fetch(`https://desolate-harbor-02076.herokuapp.com/signin?email=${data.email}&password=${data.password}`)
       .then(res => res.json())
       .then(data => {
         if(data.error){
