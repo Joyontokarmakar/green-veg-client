@@ -1,0 +1,66 @@
+.login_area{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 2px 5px 10px #ddd;
+    padding: 25px 40px;
+}
+
+.inputField{
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin: 5px 0;
+}
+.inputField:focus{
+    border: 1px solid rgb(116, 116, 116);
+    box-shadow: 2px 2px 10px rgb(173 173 173) !important;
+    padding: 5px;
+    transition: 0.3s;
+    outline: 0;
+}
+
+.logButton{
+    padding: 10px;
+    width: 100%;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.manual{
+    background-color: rgb(255, 15, 79);
+    color: #FFF;
+}
+
+.divider{
+    text-align: center;
+}
+.border_after{
+    border-bottom: 1px solid #d3d3d3;
+    width: 45%;
+    margin: 0 10px;
+}
+
+.google,
+.facebook{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+}
+
+.google img,
+.facebook img{
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 10%;
+}
+
+.logo{
+    margin: 0 auto;
+    display: block;
+    width: 35%;
+}

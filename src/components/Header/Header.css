@@ -1,0 +1,16 @@
+.navbar-links {
+  margin-left: auto;
+  align-items: center;
+}
+
+.link-text {
+  margin-left: 1rem;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+}
+
+.link-text:hover {
+  color: #007bff;
+  text-decoration: none;
+}
