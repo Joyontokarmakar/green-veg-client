@@ -2,20 +2,20 @@ import './Home.css';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 
 function Home() {
   
-  const [events, setEvents] = useState([]);
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://desolate-harbor-02076.herokuapp.com/events`)
+    fetch(`https://desolate-harbor-02076.herokuapp.com/products`)
       .then(res => res.json())
       .then(data => {
         setIsLoading(false);
-        setEvents(data.reverse());
+        setProducts(data.reverse());
       })
   })
 
@@ -31,12 +31,14 @@ function Home() {
         }
         <div className="d-flex justify-content-around flex-wrap">
           {
-            events.map((event, idx)=> {
+            products.map((product, idx)=> {
               return(
                 <Card style={{ width: '16rem', marginBottom: '20px' }} className="bg-dark" key={idx}>
-                  <Card.Img variant="top" src={event.imageUrl} style={{height: '200px'}} />
+                  <Card.Img variant="top" src={product.imageUrl} style={{height: '200px'}} />
                   <Card.Body>
-                    <Card.Title className="text-center text-white">{event.title}</Card.Title>
+                    <Card.Title className="text-center text-white">{product.title}</Card.Title>
+                    <Card.Title className="text-center text-white">{product.price}</Card.Title>
+                    <Button>Buy Now</Button>
                   </Card.Body>
                 </Card>
               )

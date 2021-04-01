@@ -1,9 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AddEvent from './components/AddEvent/AddEvent';
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
-import SignIn from './components/SignIn/SignIn';
 import Login from './components/Login/Login';
 import { createContext } from 'react';
 import { useState } from 'react';
@@ -34,11 +32,7 @@ function App() {
               <Login/>
             </Route>
 
-            <Route path="/addevent">
-              <AddEvent/>
-            </Route>
-
-            <PrivateRoute exact path="/admin">
+            <PrivateRoute exact  path="/admin">
               <Admin/>
             </PrivateRoute>
 

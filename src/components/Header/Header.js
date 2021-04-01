@@ -19,7 +19,6 @@ function Header() {
             <Nav className="navbar-links">
               <Link to="/admin" className="link-text">Admin</Link>
               <Link to="/" className="link-text">Home</Link>
-              <Link to="/addevent" className="link-text">Add Event</Link>
               <Link to="/login" className="link-text"> Login </Link>
             </Nav>
           </Navbar.Collapse>
