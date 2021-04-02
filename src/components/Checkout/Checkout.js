@@ -2,8 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Card } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './Checkout.css'
 
 
 const Checkout = (props) => {
@@ -19,23 +20,45 @@ const Checkout = (props) => {
         })
     })
 
-    console.log(id)
     return (
-        <div>
-            {
-            products.map((product, idx,id)=> {
-              return(
-                <Card style={{ width: '16rem', marginBottom: '20px' }} className="bg-dark" key={idx}>
-                  <Card.Img variant="top" src={product.imageUrl} style={{height: '200px'}} />
-                  <Card.Body>
-                    <Card.Title className="text-center text-white">{product.title}</Card.Title>
-                    <Card.Title className="text-center text-white">{product.price}</Card.Title>
-                    {/* <Link className="ride_select" to={`/checkout/${product._id}`}>Buy Now</Link> */}
-                  </Card.Body>
-                </Card>
-              )
-            })
-          }
+        <div className="home">
+            <div className="container">
+                <div className="table-responsive">
+                    <table className="table-striped w-100">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                products.map((product, idx,id)=> {
+                                    return(
+                                        <tr key={idx}>
+                                            {/* <Card.Img variant="top" src={product.imageUrl} style={{height: '200px'}} /> */}
+                                            <td>{product.title}</td>
+                                            <td>1</td>
+                                            <td>{product.price}</td>
+                                            <td>{product.price}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                        <tfoot className="mt-5">
+                            <tr>
+                                <td colSpan="4" className="text-right">
+                                    <Link className="ride_select"><Button>Proceed to Checkout</Button></Link>
+                                </td>
+                            </tr>
+                        </tfoot>
+                
+                    </table>
+                </div>
+            </div>
         </div>
     );
 };

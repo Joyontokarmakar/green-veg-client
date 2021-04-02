@@ -2,7 +2,7 @@ import './Home.css';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card,Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -30,18 +30,22 @@ function Home(props) {
             </div>
           </div>
         }
-        <div className="d-flex justify-content-around flex-wrap">
+        <div className="row">
           {
             products.map((product, idx,id)=> {
               return(
-                <Card style={{ width: '16rem', marginBottom: '20px' }} className="bg-dark" key={idx}>
-                  <Card.Img variant="top" src={product.imageUrl} style={{height: '200px'}} />
-                  <Card.Body>
-                    <Card.Title className="text-center text-white">{product.title}</Card.Title>
-                    <Card.Title className="text-center text-white">{product.price}</Card.Title>
-                    <Link className="ride_select" to={`/checkout/${product._id}`}>Buy Now</Link>
-                  </Card.Body>
-                </Card>
+                <div className="col-md-3 my-3">
+                  <Card className="individual_card h-100" key={idx}>
+                    <div className="image_area">
+                      <Card.Img className="card_img" variant="top" src={product.imageUrl} />
+                    </div>
+                    <div className="body_area">
+                      <h5>{product.title}</h5>
+                      <p>{product.price}</p>
+                      <Link to={`/checkout/${product._id}`}><Button className="buy_btn">Buy Now</Button></Link>
+                    </div>
+                  </Card>
+                </div>
               )
             })
           }

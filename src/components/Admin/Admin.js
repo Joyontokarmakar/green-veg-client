@@ -1,13 +1,25 @@
 import './Admin.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { useState } from 'react';
 import { Button, Card, Form, Tabs, Tab } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router';
 
 function Admin() {
+
+  // manage product
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetch(`https://desolate-harbor-02076.herokuapp.com/products`)
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data.reverse());
+      })
+  })
+
   const history = useHistory();
   const [imgUrl, setImgUrl] = useState('');
   const { register, handleSubmit, errors } = useForm();
@@ -26,7 +38,20 @@ function Admin() {
       },
       body: JSON.stringify(eventData)
     })
-      .then(res => history.push('/'))
+    .then(res => history.push('/'))
+  };
+
+  // Delete product
+  const deleteProduct = (event, id) => {
+    fetch(`/delete/${id}`, {
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(result => {
+        if(result){
+            event.target.parentNode.style.display = 'none';
+        }
+    })
   };
 
   const handleImageUplaod = product => {
@@ -43,12 +68,13 @@ function Admin() {
   }
 
   return (
-    <div className="AddEvent">
+    <div className="addProduct">
       <div className="container">
 
         {/* Add New Product Tab */}
 
         <Tabs defaultActiveKey="add" id="uncontrolled-tab-example">
+
           <Tab eventKey="add" title="Add Product">
             <Card style={{ maxWidth: '600px', margin: '50px auto' }}>
               <Card.Body>
@@ -85,13 +111,67 @@ function Admin() {
           {/* Product Manage(Delete action will be here) */}
 
           <Tab eventKey="manage" title="Manage Product">
-            <h1>This is Manage Product Tab</h1>
+            <div className="row">
+              <div className="table-responsive">
+                <table className="table-striped w-100">
+                  <thead>
+                    <tr>
+                      <th>Product Name</th>
+                      <th>Quantity</th>
+                      <th>Unit Price</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      products.map((product, idx,id)=> {
+                        return(
+                          <tr key={idx}>
+                            <td>{product.title}</td>
+                            <td>1</td>
+                            <td>{product.price}</td>
+                            <td><button onclick={deleteProduct(product, '${product._id}')}>Delete</button></td>
+                          </tr>
+                        )
+                      })
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </Tab>
 
           {/* Edit Product will be here */}
 
           <Tab eventKey="edit" title="Edit Product">
-            <h1>This is Edit Product Tab</h1>
+            <div className="row">
+              <div className="table-responsive">
+                <table className="table-striped w-100">
+                  <thead>
+                    <tr>
+                      <th>Product Name</th>
+                      <th>Quantity</th>
+                      <th>Unit Price</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      products.map((product, idx,id)=> {
+                        return(
+                          <tr key={idx}>
+                            <td>{product.title}</td>
+                            <td>1</td>
+                            <td>{product.price}</td>
+                            <td>Edit</td>
+                          </tr>
+                        )
+                      })
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </Tab>
         </Tabs>
       </div>

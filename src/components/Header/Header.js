@@ -13,7 +13,7 @@ function Header() {
     <div className="Header">
       <div className="container">
         <Navbar expand="lg">
-          <Link to="/" className="link-text"><img src={logo} alt="Volunteer Network" className="w-25" /></Link>
+          <Link to="/" className=""><img src={logo} alt="Volunteer Network" className="header_logo" /></Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="navbar-links">

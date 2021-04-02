@@ -1,3 +1,26 @@
 .Home {
   margin: 40px 0px;
 }
+
+.card_img{
+  padding: 15px;
+  width: 80% !important;
+  margin: 0 auto;
+  display: block;
+}
+
+.image_area{
+  height: 170px;
+  border-bottom: 1px solid #ddd;
+}
+
+.body_area{
+  padding: 15px;
+}
+
+.buy_btn{
+  float: right;
+  color: #fff;
+}
+
+

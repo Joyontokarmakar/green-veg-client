@@ -48,23 +48,6 @@ const Login = () => {
         });
     }
 
-    // facebook Sign in
-    const handleSignFacebook = () => {
-        var provider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-            const {displayName, email, photoURL} = result.user;
-            const signedInUser = {name: displayName, email, photoURL};
-            setLoggedInUser(signedInUser);
-            history.replace(from)
-        })
-        .catch((error) => {
-            const errorMessage = error.message;
-            console.log(errorMessage);
-        });
-    }
-
     // const handleSignOut = () => {
     //     firebase.auth().signOut()
     //         .then(res => {
@@ -93,78 +76,20 @@ const Login = () => {
             setUser(newUserInfo)
         }
     }
-    // menual login
-    const handleSubmit = (e) => {
-        console.log(user.email, user.password)
-        history.replace(from)
-        if(newUser && user.email && user.password){
-            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-            .then((userCredential) => {
-                const newUserInfo = {...user};
-                newUserInfo.error = '';
-                newUserInfo.success = true;
-                setUser(newUserInfo);
-                setLoggedInUser(newUserInfo);
-                history.replace(from)
-            })
-            .catch((error) => {
-                const newUserInfo = {...user};
-                newUserInfo.error = error.message;
-                newUserInfo.success = false;
-                setUser(newUserInfo);
-
-            });
-        }
-        if(!newUser && user.email && user.password){
-            firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-            .then((userCredential) => {
-                const newUserInfo = {...user};
-                newUserInfo.error = '';
-                newUserInfo.success = true;
-                setUser(newUserInfo);
-                setLoggedInUser(newUserInfo);
-                history.replace(from)
-            })
-            .catch((error) => {
-                const newUserInfo = {...user};
-                newUserInfo.error = error.message;
-                newUserInfo.success = false;
-                setUser(newUserInfo)
-            });
-        }
-        e.preventDefault();
-    }
+    
     return (
         <div>
             <div className="row d-flex justify-content-center align-items-center w-100 my-5">
                 <div className="col-md-4 col-12">
-                    {/* <img src={logo} alt="" className="logo"/> */}
                     <div className="login_area mt-5 text-center">
                         <h2>Log In</h2>
-                        <form onSubmit={handleSubmit}>
-                            <p style={{color:'red'}}>{user.error}</p>
-                            {
-                                user.success && <p style={{color:'green'}}>User { newUser ? 'Created' : 'LoggedIn'} Successfully</p>
-                            }
-                            
-                            {newUser && <input type="text" className="inputField" name="name" onBlur={handleBlur} placeholder="Your Full Name" required/>}
-                            <br/>
-                            <input type="text" className="inputField" name="email" onBlur={handleBlur} placeholder="Your Email Address" required/>
-                            <br/>
-                            <input type="password" className="inputField" name="password" onBlur={handleBlur} placeholder="Enter Password" required/>
-                            <br/>
-                            <input type="submit" className="logButton manual" value="Sign In"/>
 
-                            <input type="checkbox" onChange={() => setNewUser(!newUser)} name="newuser" id="newuser" hidden/>
-                            <label htmlFor="newuser">Don't have any Account? Register Here</label>
-                        </form>
                         <div className="divider d-flex align-items-center justify-content-center mt-2">
                             <div className="border_after"></div>
-                            or
+                            <span className="auth_head">We have Google Sign Only</span> 
                             <div className="border_after"></div>
                         </div>
                         <button onClick={handleSignGoogle} className="logButton google"> <img src={google_logo} alt=""/> Sign in with Google</button>
-                        <button onClick={handleSignFacebook} className="logButton facebook"> <img src={fab_logo} alt=""/> Sign in with Facebook</button>
                         {/* {
                             loggedInUser ? 
                             <button onClick={handleSignOut} className="btn btn-primary">Sign Out</button> 

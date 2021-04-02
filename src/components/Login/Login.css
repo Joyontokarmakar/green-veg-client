@@ -37,12 +37,15 @@
 }
 .border_after{
     border-bottom: 1px solid #d3d3d3;
-    width: 45%;
-    margin: 0 10px;
+    width: 15%;
+    margin: 35px 10px;
 }
 
-.google,
-.facebook{
+.auth_head{
+    font-size: 13px;
+}
+
+.google{
     background-color: #fff;
     color: #000;
     border: 1px solid #ddd;
@@ -51,12 +54,11 @@
     position: relative;
 }
 
-.google img,
-.facebook img{
+.google img{
     position: absolute;
     left: 5px;
     top: 5px;
-    width: 10%;
+    width: 34px;
 }
 
 .logo{
