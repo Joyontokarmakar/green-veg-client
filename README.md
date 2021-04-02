@@ -23,6 +23,10 @@
    - hook
   - react bootstrap
   - react fontawesome
+  - Node JS
+  - MOngo DB
+  - Firebase auth
+  - Heroku app
 
 - for API and Database
   - MOngo DB Atlas
