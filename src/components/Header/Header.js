@@ -17,9 +17,11 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="navbar-links">
-              <Link to="/admin" className="link-text">Admin</Link>
-              <Link to="/" className="link-text">Home</Link>
-              <Link to="/login" className="link-text"> Login </Link>
+              <Link to="/admin" className="link-text menu_btn">Admin</Link>
+              <Link to="/" className="link-text menu_btn">Home</Link>
+              {/* <Link to="/order/:id" className="link-text menu_btn">Order</Link> */}
+              <Link to="/login" className="link-text menu_btn"> Login </Link>
+              <Link to="/" className="link-text">{loggedInUser.name}</Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

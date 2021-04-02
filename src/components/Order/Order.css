@@ -18,3 +18,9 @@
   .tfoot{
     padding-top: 60px !important;
   }
+
+  .order_head{
+    background-color: #72b3905b;
+    border-radius: 5px 5px 0 0;
+    padding: 20px 0;
+  }

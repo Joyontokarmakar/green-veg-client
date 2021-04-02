@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { useState } from 'react';
-import { Button, Card, Form, Tabs, Tab } from 'react-bootstrap';
+import { Button, Card, Col, Row, Form, Tabs, Tab } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router';
@@ -42,14 +42,14 @@ function Admin() {
   };
 
   // Delete product
-  const deleteProduct = (event, id) => {
-    fetch(`/delete/${id}`, {
+  const deleteProduct = (id) => {
+    fetch(`https://desolate-harbor-02076.herokuapp.com/delete/${id}`, {
       method: 'DELETE'
     })
     .then(res => res.json())
     .then(result => {
         if(result){
-            event.target.parentNode.style.display = 'none';
+          // product.target.parentNode.style.display = 'none';
         }
     })
   };
@@ -76,33 +76,43 @@ function Admin() {
         <Tabs defaultActiveKey="add" id="uncontrolled-tab-example">
 
           <Tab eventKey="add" title="Add Product">
-            <Card style={{ maxWidth: '600px', margin: '50px auto' }}>
+            <Card>
               <Card.Body>
                 <h4 className="text-center">Add New Product</h4>
                 <Form onSubmit={handleSubmit(onSubmit)}>
 
-                  <Form.Group>
-                    <Form.Label>Product Name</Form.Label>
-                    <Form.Control type="text" name="productName" placeholder="Enter Product Name" ref={register({ required: true })} />
-                    {/* {errors.productName ? <span className="text-danger">maximum character is 20</span> : <span className="text-info">maximum character is 20</span>} */}
+                  <Form.Group as={Row}>
+                    <Form.Label column sm="2">Product Name</Form.Label>
+                    <Col sm="10">
+                      <Form.Control type="text" name="productName" className="form_data" placeholder="Enter Product Name" ref={register({ required: true })} />
+                      {/* {errors.productName ? <span className="text-danger">maximum character is 20</span> : <span className="text-info">maximum character is 20</span>} */}
+                    </Col>
                   </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Product Image</Form.Label>
-                    <Form.Control type="file" name="eventImageUrl" ref={register({ required: true })} onChange={handleImageUplaod} />
-                    {errors.eventImageUrl ? <span className="text-danger">product need an image</span> : <span className="text-info">select an image</span>}
+                  <Form.Group as={Row}>
+                    <Form.Label column sm="2">Product Image</Form.Label>
+                    <Col sm="10">
+                      <Form.Control type="file" name="eventImageUrl" className="form_data" ref={register({ required: true })} onChange={handleImageUplaod} />
+                      {/* {errors.eventImageUrl ? <span className="text-danger">product need an image</span> : <span className="text-info">select an image</span>} */}
+                    </Col>
                   </Form.Group>
 
-                  <Form.Group>
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control type="text" name="productPrice" placeholder="Price" ref={register({ required: true })} />
-                    {/* {errors.productPrice ? <span className="text-danger">maximum character is 20</span> : <span className="text-info">maximum character is 20</span>} */}
+                  <Form.Group as={Row}>
+                    <Form.Label column sm="2">Price</Form.Label>
+                    <Col sm="10">
+                      <Form.Control type="text" name="productPrice" className="form_data" placeholder="Price" ref={register({ required: true })} />
+                      {/* {errors.productPrice ? <span className="text-danger">maximum character is 20</span> : <span className="text-info">maximum character is 20</span>} */}
+                    </Col>
                   </Form.Group>
 
-                  {imgUrl === '' ?
-                    <Button variant="primary" type="submit" disabled>Submit</Button> :
-                    <Button variant="primary" type="submit">Submit</Button>
-                  }
+                  <Form.Group as={Row} className="float-right mx-1">
+                    {imgUrl === '' ?
+                      <Button className="menu_btn_disabled" type="submit" disabled>Submit</Button> :
+                      <Button className="menu_btn" type="submit">Submit</Button>
+                    }
+                  </Form.Group>
+
+                  
                 </Form>
               </Card.Body>
             </Card>
@@ -117,20 +127,20 @@ function Admin() {
                   <thead>
                     <tr>
                       <th>Product Name</th>
-                      <th>Quantity</th>
-                      <th>Unit Price</th>
-                      <th>Price</th>
+                      <th className="text-center">Quantity</th>
+                      <th className="text-center">Unit Price</th>
+                      <th className="text-center">Price</th>
                     </tr>
                   </thead>
                   <tbody>
                     {
-                      products.map((product, idx,id)=> {
+                      products.map((product)=> {
                         return(
-                          <tr key={idx}>
+                          <tr>
                             <td>{product.title}</td>
-                            <td>1</td>
-                            <td>{product.price}</td>
-                            <td><button onclick={deleteProduct(product, '${product._id}')}>Delete</button></td>
+                            <td className="text-center">1</td>
+                            <td className="text-center">{product.price}</td>
+                            <td className="text-center"><button className="delete" onClick={()=> deleteProduct(product._id)}>&#10006;</button></td>
                           </tr>
                         )
                       })
@@ -150,9 +160,9 @@ function Admin() {
                   <thead>
                     <tr>
                       <th>Product Name</th>
-                      <th>Quantity</th>
-                      <th>Unit Price</th>
-                      <th>Price</th>
+                      <th className="text-center">Quantity</th>
+                      <th className="text-center">Unit Price</th>
+                      <th className="text-center">Price</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -161,9 +171,9 @@ function Admin() {
                         return(
                           <tr key={idx}>
                             <td>{product.title}</td>
-                            <td>1</td>
-                            <td>{product.price}</td>
-                            <td>Edit</td>
+                            <td className="text-center">1</td>
+                            <td className="text-center">{product.price}</td>
+                            <td className="text-center"><button className="edit">&#9998;</button></td>
                           </tr>
                         )
                       })

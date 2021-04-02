@@ -18,7 +18,7 @@ const Checkout = (props) => {
         .then(data => {
           setProducts(data.reverse());
         })
-    })
+    },[])
 
     return (
         <div className="home">
@@ -35,9 +35,9 @@ const Checkout = (props) => {
                         </thead>
                         <tbody>
                             {
-                                products.map((product, idx,id)=> {
+                                products.map((product)=> {
                                     return(
-                                        <tr key={idx}>
+                                        <tr>
                                             {/* <Card.Img variant="top" src={product.imageUrl} style={{height: '200px'}} /> */}
                                             <td>{product.title}</td>
                                             <td>1</td>
@@ -50,8 +50,14 @@ const Checkout = (props) => {
                         </tbody>
                         <tfoot className="mt-5">
                             <tr>
-                                <td colSpan="4" className="text-right">
-                                    <Link className="ride_select"><Button>Proceed to Checkout</Button></Link>
+                                <td colSpan="4" className="tfoot text-right">
+                                   {
+                                       products.map((product) =>{
+                                           return(
+                                            <Link to={`/order/${product._id}`} className="ride_select"><Button>Proceed to Checkout</Button></Link>
+                                           )
+                                       })
+                                   }
                                 </td>
                             </tr>
                         </tfoot>

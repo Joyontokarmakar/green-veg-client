@@ -4,3 +4,8 @@
   background-repeat: no-repeat;
   min-height: 100vh;
 }
+
+::selection{
+  background-color: #245d3e;
+  color: #fff;
+}

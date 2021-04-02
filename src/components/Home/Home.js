@@ -18,7 +18,7 @@ function Home(props) {
         setIsLoading(false);
         setProducts(data.reverse());
       })
-  })
+  }, [])
 
   return (
     <div className="Home">
@@ -41,8 +41,11 @@ function Home(props) {
                     </div>
                     <div className="body_area">
                       <h5>{product.title}</h5>
-                      <p>{product.price}</p>
-                      <Link to={`/checkout/${product._id}`}><Button className="buy_btn">Buy Now</Button></Link>
+
+                      <div className="row d-flex justify-content-between align-items-center h-100 px-2">
+                        <p class="price_amount">Price: ${product.price}</p>
+                        <Link to={`/checkout/${product._id}`}><Button className="buy_btn">Buy Now</Button></Link>
+                      </div>
                     </div>
                   </Card>
                 </div>
