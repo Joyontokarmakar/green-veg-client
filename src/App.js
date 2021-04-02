@@ -7,6 +7,7 @@ import { createContext } from 'react';
 import { useState } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Admin from './components/Admin/Admin';
+import Checkout from './components/Checkout/Checkout';
 
 export const userContext = createContext();
 function App() {
@@ -34,6 +35,10 @@ function App() {
 
             <PrivateRoute exact  path="/admin">
               <Admin/>
+            </PrivateRoute>
+
+            <PrivateRoute exact path="/checkout/:id">
+              <Checkout/>
             </PrivateRoute>
 
             <Route exact path="*">

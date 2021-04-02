@@ -2,10 +2,11 @@ import './Home.css';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
-function Home() {
+function Home(props) {
   
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,14 +32,14 @@ function Home() {
         }
         <div className="d-flex justify-content-around flex-wrap">
           {
-            products.map((product, idx)=> {
+            products.map((product, idx,id)=> {
               return(
                 <Card style={{ width: '16rem', marginBottom: '20px' }} className="bg-dark" key={idx}>
                   <Card.Img variant="top" src={product.imageUrl} style={{height: '200px'}} />
                   <Card.Body>
                     <Card.Title className="text-center text-white">{product.title}</Card.Title>
                     <Card.Title className="text-center text-white">{product.price}</Card.Title>
-                    <Button>Buy Now</Button>
+                    <Link className="ride_select" to={`/checkout/${product._id}`}>Buy Now</Link>
                   </Card.Body>
                 </Card>
               )
